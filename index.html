@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARIA — Artificial Intelligence Resource Assistant</title>
+  <meta name="description" content="Presentación interactiva de ARIA — Asistente inteligente para planificación de materiales.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#09090B',
+            primary: '#7C3AED',
+            'primary-light': '#A78BFA',
+            secondary: '#A1A1AA',
+            success: '#22C55E',
+            warning: '#F59E0B',
+            error: '#EF4444',
+          },
+          fontFamily: { sans: ['Sora', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <nav class="progress-nav progress-nav-hidden" id="progressNav" aria-label="Progreso"></nav>
+
+  <main>
+
+    <!-- SECCIÓN 1: PREGUNTA INICIAL -->
+    <section class="section section-pure" id="apertura" data-section="Apertura">
+      <div class="text-center px-6 relative z-10 max-w-5xl mx-auto">
+        <h1 class="opening-question text-3xl md:text-5xl lg:text-6xl font-light leading-snug opacity-0">
+          ¿Qué pasaría si una sola decisión pudiera detener toda una producción?
+        </h1>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: CONTEXTO OPERATIVO -->
+    <section class="section section-contexto" id="contexto" data-section="Contexto">
+      <div class="contexto-inner" id="contextoInner">
+        <div class="scene-cards" id="sceneCards">
+          <div class="scene-card" id="card-factory">
+            <div class="scene-img-wrap">
+              <img src="img/fábrica.webp" alt="Fábrica" class="scene-img" loading="eager">
+            </div>
+            <span class="scene-label">Fábrica</span>
+          </div>
+          <div class="scene-card" id="card-materials">
+            <div class="scene-img-wrap">
+              <img src="img/materiales.jpg" alt="Materiales" class="scene-img" loading="eager">
+            </div>
+            <span class="scene-label">Materiales</span>
+          </div>
+          <div class="scene-card" id="card-dispatch">
+            <div class="scene-img-wrap">
+              <img src="img/despachos.jpg" alt="Despachos" class="scene-img" loading="eager">
+            </div>
+            <span class="scene-label">Despachos</span>
+          </div>
+          <div class="scene-card" id="card-workers">
+            <div class="scene-img-wrap">
+              <img src="img/Operarios.jpg" alt="Operarios" class="scene-img" loading="eager">
+            </div>
+            <span class="scene-label">Operarios</span>
+          </div>
+        </div>
+        <div class="scene-overlay opacity-0" id="sceneOverlay"></div>
+        <div class="scene-alert opacity-0" id="sceneAlert">
+          <span class="alert-icon">⛔</span>
+          <span class="alert-text">Producción detenida</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: PROBLEMA -->
+    <section class="section" id="problema" data-section="Problema">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col items-center gap-0 max-w-xs mx-auto" id="problemFlow">
+          <div class="flow-item"><div class="pipeline-box">Excel</div></div>
+          <div class="flow-arrow text-2xl py-2">↓</div>
+          <div class="flow-item"><div class="pipeline-box">Llamadas</div></div>
+          <div class="flow-arrow text-2xl py-2">↓</div>
+          <div class="flow-item"><div class="pipeline-box">Correos</div></div>
+          <div class="flow-arrow text-2xl py-2">↓</div>
+          <div class="flow-item"><div class="pipeline-box">Experiencia</div></div>
+          <div class="flow-arrow text-2xl py-2">↓</div>
+          <div class="flow-item"><div class="pipeline-box border-warning/30 text-warning">Errores</div></div>
+          <div class="flow-arrow text-2xl py-2">↓</div>
+          <div class="flow-item"><div class="pipeline-box border-error/30 text-error">Compras urgentes</div></div>
+          <div class="flow-arrow text-2xl py-2">↓</div>
+          <div class="flow-item"><div class="pipeline-box border-error/30 text-error font-bold">Sobrecostos</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: PREGUNTA IA -->
+    <section class="section section-pure" id="pregunta-ia" data-section="Oportunidad">
+      <div class="text-center px-6 max-w-4xl mx-auto">
+        <h2 class="ia-question text-3xl md:text-5xl lg:text-6xl font-bold leading-tight opacity-0">
+          ¿Y si la Inteligencia Artificial pudiera ayudar a tomar esta decisión?
+        </h2>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: REVELACIÓN ARIA -->
+    <section class="section" id="aria-reveal" data-section="ARIA">
+      <div class="hero-glow" style="top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+      <div class="text-center px-6 relative z-10">
+        <h2 class="reveal-logo text-6xl md:text-8xl font-bold tracking-[0.2em] opacity-0 mb-6">ARIA</h2>
+        <p class="reveal-subtitle text-secondary text-sm md:text-base tracking-[0.3em] uppercase opacity-0 mb-10">
+          Artificial Intelligence Resource Assistant
+        </p>
+        <p class="reveal-tagline text-lg md:text-xl text-secondary max-w-xl mx-auto leading-relaxed opacity-0 font-light">
+          Un asistente inteligente para apoyar la planificación de materiales.
+        </p>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 6: NUESTRA SOLUCIÓN -->
+    <section class="section" id="solucion" data-section="Solución">
+      <div class="container mx-auto px-4 md:px-6">
+        <p class="text-primary text-xs tracking-[0.3em] uppercase text-center mb-10 md:mb-14 opacity-0 section-label">Nuestra solución</p>
+
+        <div class="h-flow" id="solutionFlow">
+
+          <div class="h-flow-layout">
+
+            <!-- ENTRADA: Usuario + Pregunta -->
+            <div class="h-flow-group h-flow-group-input" data-group="input">
+              <span class="h-flow-group-tag">Entrada</span>
+              <div class="h-flow-group-inner">
+                <div class="h-flow-node" data-step="0">
+                  <div class="h-flow-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </div>
+                  <span class="h-flow-label">Usuario</span>
+                </div>
+                <div class="h-flow-arrow-inner">→</div>
+                <div class="h-flow-node" data-step="1">
+                  <div class="h-flow-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  </div>
+                  <span class="h-flow-label">Pregunta</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Conector izquierdo -->
+            <div class="h-flow-bridge h-flow-bridge-left" data-bridge="0">
+              <svg viewBox="0 0 80 24" class="h-flow-bridge-svg" preserveAspectRatio="none">
+                <line class="h-flow-bridge-line" x1="0" y1="12" x2="80" y2="12"/>
+              </svg>
+              <span class="h-flow-bridge-arrow">→</span>
+            </div>
+
+            <!-- ARIA — centro -->
+            <div class="h-flow-center" data-step="2">
+              <div class="h-flow-aria-glow"></div>
+              <div class="h-flow-node h-flow-node-aria">
+                <div class="h-flow-icon h-flow-icon-aria">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <span class="h-flow-label h-flow-label-aria">ARIA</span>
+                <span class="h-flow-sublabel">Motor inteligente</span>
+              </div>
+            </div>
+
+            <!-- Conector derecho -->
+            <div class="h-flow-bridge h-flow-bridge-right" data-bridge="1">
+              <svg viewBox="0 0 80 24" class="h-flow-bridge-svg" preserveAspectRatio="none">
+                <line class="h-flow-bridge-line" x1="0" y1="12" x2="80" y2="12"/>
+              </svg>
+              <span class="h-flow-bridge-arrow">→</span>
+            </div>
+
+            <!-- SALIDA: Predice + Recomienda + Decide -->
+            <div class="h-flow-group h-flow-group-output" data-group="output">
+              <span class="h-flow-group-tag">Salida</span>
+              <div class="h-flow-group-inner">
+                <div class="h-flow-node" data-step="3">
+                  <div class="h-flow-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  </div>
+                  <span class="h-flow-label">Predice</span>
+                </div>
+                <div class="h-flow-arrow-inner">→</div>
+                <div class="h-flow-node" data-step="4">
+                  <div class="h-flow-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                  </div>
+                  <span class="h-flow-label">Recomienda</span>
+                </div>
+                <div class="h-flow-arrow-inner">→</div>
+                <div class="h-flow-node" data-step="5">
+                  <div class="h-flow-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/></svg>
+                  </div>
+                  <span class="h-flow-label">Usuario decide</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="h-flow-pulse" id="flowPulse"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 7: CÓMO FUNCIONA -->
+    <section class="section section-tech" id="como-funciona" data-section="Funcionamiento">
+      <div class="container mx-auto px-4 md:px-6">
+        <p class="text-primary text-xs tracking-[0.3em] uppercase text-center mb-8 md:mb-12 opacity-0 section-label">¿Cómo funciona?</p>
+
+        <div class="tech-bento" id="techHub">
+          <article class="tech-card" data-card="0">
+            <div class="tech-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3 class="tech-card-title">IA Predictiva</h3>
+            <p class="tech-card-desc">Analiza consumo histórico y proyecta demanda futura</p>
+          </article>
+
+          <article class="tech-card" data-card="1">
+            <div class="tech-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3 class="tech-card-title">IA Generativa</h3>
+            <p class="tech-card-desc">Interpreta preguntas y explica en lenguaje natural</p>
+          </article>
+
+          <article class="tech-card tech-card-aria" data-card="aria">
+            <div class="tech-aria-glow"></div>
+            <span class="tech-aria-name">ARIA</span>
+            <p class="tech-aria-tagline">Artificial Intelligence Resource Assistant</p>
+            <p class="tech-aria-desc">El motor que integra predicción, conversación y decisiones</p>
+          </article>
+
+          <article class="tech-card" data-card="2">
+            <div class="tech-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <h3 class="tech-card-title">Dashboard</h3>
+            <p class="tech-card-desc">KPIs, inventario y visualización en tiempo real</p>
+          </article>
+
+          <article class="tech-card" data-card="3">
+            <div class="tech-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <h3 class="tech-card-title">Alertas</h3>
+            <p class="tech-card-desc">Avisos antes de que un material llegue a nivel crítico</p>
+          </article>
+
+          <article class="tech-card" data-card="4">
+            <div class="tech-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <h3 class="tech-card-title">Recomendaciones</h3>
+            <p class="tech-card-desc">Acciones concretas: qué comprar, cuánto y cuándo</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 8: DEMO MVP (video) -->
+    <section class="section section-mvp-demo" id="mvp" data-section="Demo MVP">
+      <div class="mx-auto px-4 md:px-6 max-w-[1400px]">
+        <p class="text-primary text-xs tracking-[0.3em] uppercase text-center mb-3 opacity-0 section-label">Demo del MVP</p>
+        <h2 class="mvp-demo-title text-center text-xl md:text-2xl font-light text-secondary mb-8 md:mb-10 opacity-0">Así se ve ARIA en acción</h2>
+
+        <div class="mvp-video-wrap opacity-0" id="mvpVideoWrap">
+          <div class="mvp-video-frame">
+            <div class="mvp-video-chrome">
+              <div class="flex items-center gap-2">
+                <span class="mvp-dot mvp-dot-red"></span>
+                <span class="mvp-dot mvp-dot-yellow"></span>
+                <span class="mvp-dot mvp-dot-green"></span>
+              </div>
+              <span class="mvp-video-label">ARIA — Demo en vivo</span>
+            </div>
+            <video
+              id="mvpVideo"
+              class="mvp-video"
+              src="img/video%20aria.mp4"
+              muted
+              playsinline
+              preload="metadata"
+              aria-label="Demostración del sistema ARIA"
+            ></video>
+          </div>
+        </div>
+
+        <div class="mvp-highlights opacity-0" id="mvpHighlights">
+          <div class="mvp-highlight">
+            <div class="mvp-highlight-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <div>
+              <h3 class="mvp-highlight-title">Dashboard</h3>
+              <p class="mvp-highlight-desc">KPIs, inventario y alertas en tiempo real</p>
+            </div>
+          </div>
+          <div class="mvp-highlight">
+            <div class="mvp-highlight-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div>
+              <h3 class="mvp-highlight-title">Agente IA</h3>
+              <p class="mvp-highlight-desc">Preguntas en lenguaje natural con respuestas accionables</p>
+            </div>
+          </div>
+          <div class="mvp-highlight">
+            <div class="mvp-highlight-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <div>
+              <h3 class="mvp-highlight-title">Simulación</h3>
+              <p class="mvp-highlight-desc">Escenarios de producción y recomendaciones dinámicas</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 9: BENEFICIOS -->
+    <section class="section" id="beneficios" data-section="Beneficios">
+      <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-16 max-w-5xl mx-auto">
+          <div class="text-center opacity-0 benefit-item">
+            <div class="counter-value"><span class="counter" data-target="80">0</span>%</div>
+            <p class="text-secondary text-xs uppercase tracking-widest mt-6">Reducción del tiempo</p>
+          </div>
+          <div class="text-center opacity-0 benefit-item">
+            <div class="counter-value"><span class="counter" data-target="25">0</span>%</div>
+            <p class="text-secondary text-xs uppercase tracking-widest mt-6">Menor exceso de inventario</p>
+          </div>
+          <div class="text-center opacity-0 benefit-item">
+            <div class="counter-value"><span class="counter-weeks" data-target="2">0</span></div>
+            <p class="text-secondary text-xs uppercase tracking-widest mt-6">Anticipación de compras</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 11: MERCADO -->
+    <section class="section section-market" id="mercado" data-section="Mercado">
+      <div class="container mx-auto px-4 md:px-6 max-w-5xl">
+        <p class="text-primary text-xs tracking-[0.3em] uppercase text-center mb-3 opacity-0 section-label">Panorama competitivo</p>
+        <h2 class="market-headline text-center text-2xl md:text-3xl font-light text-white mb-3 opacity-0">¿Dónde encaja ARIA?</h2>
+        <p class="market-sub text-center text-secondary text-sm md:text-base max-w-2xl mx-auto mb-10 md:mb-14 opacity-0">
+          Los grandes ERPs dominan la gestión enterprise, pero dejan un vacío en la planificación ágil de materiales.
+        </p>
+
+        <div class="market-traditional opacity-0">
+          <span class="market-group-label">Soluciones enterprise</span>
+          <div class="market-competitors">
+            <article class="market-card" data-market="0">
+              <div class="market-card-badge">ERP</div>
+              <div class="market-logo text-secondary">SAP</div>
+              <p class="market-card-desc">Implementación larga · Alto costo total</p>
+              <ul class="market-traits">
+                <li>Suite global</li>
+                <li>Personalización compleja</li>
+              </ul>
+            </article>
+            <article class="market-card" data-market="1">
+              <div class="market-card-badge">ERP</div>
+              <div class="market-logo text-secondary">Oracle</div>
+              <p class="market-card-desc">Enfoque enterprise · Curva de adopción</p>
+              <ul class="market-traits">
+                <li>Ecosistema cerrado</li>
+                <li>Consultoría intensiva</li>
+              </ul>
+            </article>
+            <article class="market-card" data-market="2">
+              <div class="market-card-badge">ERP</div>
+              <div class="market-logo text-secondary">Microsoft</div>
+              <p class="market-card-desc">Licencias + integración · Menos IA nativa</p>
+              <ul class="market-traits">
+                <li>Dynamics 365</li>
+                <li>Dependencia del stack</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+
+        <div class="market-bridge opacity-0" aria-hidden="true">
+          <span class="market-bridge-line"></span>
+          <span class="market-bridge-label">El vacío operativo</span>
+          <span class="market-bridge-line"></span>
+        </div>
+
+        <article class="market-card market-card-aria opacity-0" data-market="3">
+          <div class="market-aria-glow"></div>
+          <div class="market-aria-inner">
+            <div class="market-aria-header">
+              <span class="market-aria-badge">Nuestro enfoque</span>
+              <div class="market-logo text-primary">ARIA</div>
+              <p class="market-aria-tagline">Artificial Intelligence Resource Assistant</p>
+            </div>
+            <div class="market-aria-pills">
+              <span class="market-pill">IA predictiva + generativa</span>
+              <span class="market-pill">Enfoque en planificación de materiales</span>
+              <span class="market-pill">MVP en semanas, no meses</span>
+            </div>
+            <div class="market-compare-row">
+              <div class="market-compare-item">
+                <span class="market-compare-label">Implementación</span>
+                <span class="market-compare-them">12–18 meses</span>
+                <span class="market-compare-aria">1–2 semanas</span>
+              </div>
+              <div class="market-compare-item">
+                <span class="market-compare-label">Decisión</span>
+                <span class="market-compare-them">Reportes estáticos</span>
+                <span class="market-compare-aria">Recomendaciones IA</span>
+              </div>
+              <div class="market-compare-item">
+                <span class="market-compare-label">Usuario</span>
+                <span class="market-compare-them">Analista de datos</span>
+                <span class="market-compare-aria">Planificador de planta</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 12: VIABILIDAD TÉCNICA -->
+    <section class="section section-viab" id="viabilidad-tecnica" data-section="Viabilidad">
+      <div class="viab-inner mx-auto px-4 md:px-6 max-w-5xl">
+        <p class="text-primary text-xs tracking-[0.3em] uppercase text-center mb-8 md:mb-12 opacity-0 section-label">Viabilidad técnica</p>
+
+        <div class="viab-tech-grid">
+          <article class="viab-card viab-card-tech" data-viab="0">
+            <div class="viab-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+            </div>
+            <h3 class="viab-card-title">Cloud</h3>
+            <p class="viab-card-desc">Infraestructura escalable</p>
+          </article>
+
+          <article class="viab-card viab-card-tech" data-viab="1">
+            <div class="viab-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>
+            </div>
+            <h3 class="viab-card-title">Excel / CSV</h3>
+            <p class="viab-card-desc">Integración sin cambiar procesos</p>
+          </article>
+
+          <article class="viab-card viab-card-tech" data-viab="2">
+            <div class="viab-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/><circle cx="12" cy="12" r="2" fill="currentColor" stroke="none" opacity="0.6"/></svg>
+            </div>
+            <h3 class="viab-card-title">IA Predictiva + IA Generativa</h3>
+            <p class="viab-card-desc">Arquitectura modular</p>
+          </article>
+        </div>
+
+        <p class="viab-footnote opacity-0">Arquitectura preparada para crecer e integrarse con futuros sistemas ERP.</p>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 13: VIABILIDAD FINANCIERA -->
+    <section class="section section-viab" id="viabilidad-financiera" data-section="Finanzas">
+      <div class="viab-inner mx-auto px-4 md:px-6 max-w-5xl">
+        <p class="text-primary text-xs tracking-[0.3em] uppercase text-center mb-8 md:mb-12 opacity-0 section-label">Viabilidad financiera</p>
+
+        <div class="finance-kpi-grid">
+          <div class="finance-kpi opacity-0" data-finance="0">
+            <span class="finance-kpi-emoji" aria-hidden="true">💰</span>
+            <div class="finance-kpi-value"><span class="finance-counter" data-target="100" data-prefix="$" data-suffix=" M COP">0</span></div>
+            <p class="finance-kpi-label">Inversión inicial</p>
+          </div>
+          <div class="finance-kpi opacity-0" data-finance="1">
+            <span class="finance-kpi-emoji" aria-hidden="true">📈</span>
+            <div class="finance-kpi-value"><span class="finance-counter" data-target="240" data-prefix="$" data-suffix=" M COP">0</span></div>
+            <p class="finance-kpi-label">Beneficio anual</p>
+          </div>
+          <div class="finance-kpi opacity-0" data-finance="2">
+            <span class="finance-kpi-emoji" aria-hidden="true">🚀</span>
+            <div class="finance-kpi-value"><span class="finance-counter" data-target="140" data-suffix="%">0</span></div>
+            <p class="finance-kpi-label">ROI</p>
+          </div>
+          <div class="finance-kpi opacity-0" data-finance="3">
+            <span class="finance-kpi-emoji" aria-hidden="true">⏱</span>
+            <div class="finance-kpi-value"><span class="finance-counter" data-target="5" data-suffix=" meses">0</span></div>
+            <p class="finance-kpi-label">Payback</p>
+          </div>
+        </div>
+
+        <p class="viab-footnote viab-footnote-center opacity-0">Una solución técnicamente viable y financieramente sostenible.</p>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 14: RIESGOS Y ÉTICA -->
+    <section class="section section-viab" id="riesgos-etica" data-section="Ética">
+      <div class="viab-inner mx-auto px-4 md:px-6 max-w-5xl">
+        <p class="text-primary text-xs tracking-[0.3em] uppercase text-center mb-8 md:mb-12 opacity-0 section-label">Riesgos y ética</p>
+
+        <div class="ethics-grid">
+          <article class="viab-card viab-card-ethics" data-ethics="0">
+            <div class="viab-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <h3 class="viab-card-title">Calidad de datos</h3>
+            <p class="viab-card-desc">Procesos de limpieza y validación antes del entrenamiento del modelo.</p>
+          </article>
+
+          <article class="viab-card viab-card-ethics" data-ethics="1">
+            <div class="viab-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 class="viab-card-title">Adopción del usuario</h3>
+            <p class="viab-card-desc">Interfaz conversacional intuitiva y capacitación para facilitar el uso.</p>
+          </article>
+
+          <article class="viab-card viab-card-ethics" data-ethics="2">
+            <div class="viab-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h3 class="viab-card-title">Ética y privacidad</h3>
+            <p class="viab-card-desc">Cumplimiento de la Ley 1581 de 2012 y principio de IA responsable.</p>
+          </article>
+        </div>
+
+        <p class="ethics-banner opacity-0">La IA propone. El ser humano decide.</p>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 15: VALOR DIFERENCIAL -->
+    <section class="section section-valor" id="valor" data-section="Valor">
+      <div class="container mx-auto px-6 text-center">
+        <div class="value-stage">
+          <p class="value-text" id="valueText1">No mostramos datos.</p>
+          <p class="value-text" id="valueText2">Transformamos datos en decisiones.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 16: ROADMAP -->
+    <section class="section section-roadmap" id="roadmap" data-section="Roadmap">
+      <div class="roadmap-inner mx-auto px-4 md:px-6 max-w-6xl">
+        <p class="text-primary text-xs tracking-[0.3em] uppercase text-center mb-3 opacity-0 section-label">Roadmap</p>
+        <h2 class="roadmap-headline text-center text-2xl md:text-3xl font-light text-white mb-4 opacity-0">De MVP a escala</h2>
+        <p class="roadmap-intro text-center text-secondary text-sm md:text-base max-w-3xl mx-auto mb-10 md:mb-14 opacity-0">
+          Hoy contamos con un MVP funcional. El siguiente paso es validarlo en una empresa manufacturera, integrarlo con sistemas ERP y evolucionarlo hacia una solución escalable para múltiples plantas.
+        </p>
+
+        <div class="roadmap-flow" id="roadmapFlow">
+          <article class="roadmap-step roadmap-step-current" data-roadmap="0">
+            <span class="roadmap-step-tag">Hoy</span>
+            <div class="roadmap-step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3 class="roadmap-step-title">MVP funcional</h3>
+            <p class="roadmap-step-desc">Dashboard, agente IA y simulación ya operativos</p>
+          </article>
+
+          <div class="roadmap-connector" aria-hidden="true">
+            <span class="roadmap-connector-line"></span>
+            <span class="roadmap-connector-arrow">→</span>
+          </div>
+
+          <article class="roadmap-step" data-roadmap="1">
+            <span class="roadmap-step-tag">Piloto</span>
+            <div class="roadmap-step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3 class="roadmap-step-title">Validación en planta</h3>
+            <p class="roadmap-step-desc">Prueba real en una empresa manufacturera</p>
+          </article>
+
+          <div class="roadmap-connector" aria-hidden="true">
+            <span class="roadmap-connector-line"></span>
+            <span class="roadmap-connector-arrow">→</span>
+          </div>
+
+          <article class="roadmap-step" data-roadmap="2">
+            <span class="roadmap-step-tag">Integración</span>
+            <div class="roadmap-step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 8h4M7 12h10"/></svg>
+            </div>
+            <h3 class="roadmap-step-title">Conexión ERP</h3>
+            <p class="roadmap-step-desc">Integración con SAP, Oracle u otros sistemas</p>
+          </article>
+
+          <div class="roadmap-connector" aria-hidden="true">
+            <span class="roadmap-connector-line"></span>
+            <span class="roadmap-connector-arrow">→</span>
+          </div>
+
+          <article class="roadmap-step" data-roadmap="3">
+            <span class="roadmap-step-tag">Escala</span>
+            <div class="roadmap-step-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <h3 class="roadmap-step-title">Múltiples plantas</h3>
+            <p class="roadmap-step-desc">Solución escalable para operaciones regionales</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN FINAL -->
+    <section class="section section-pure section-final" id="final" data-section="Fin">
+      <div class="final-inner" id="finalInner">
+        <div class="final-stage">
+          <p class="final-line" data-step="0">Las empresas siempre tendrán que tomar decisiones.</p>
+          <p class="final-line" data-step="1">Nuestra propuesta no es reemplazar a quienes las toman.</p>
+          <p class="final-line" data-step="2">Nuestra propuesta es que nunca vuelvan a tomarlas sin el apoyo de la Inteligencia Artificial.</p>
+
+          <div class="final-team-wrap" data-step="3">
+            <div class="final-glow" id="finalGlow"></div>
+            <h2 class="final-logo">ARIA</h2>
+            <p class="final-team-sub">Artificial Intelligence Resource Assistant</p>
+            <div class="team-grid final-team-grid">
+              <article class="team-member" data-member="0">
+                <div class="team-photo">
+                  <img src="img/team/madelaine.jpg" alt="Madelaine Blanco" loading="lazy">
+                  <span class="team-initials">MB</span>
+                </div>
+                <h3 class="team-name">Madelaine Blanco</h3>
+              </article>
+              <article class="team-member" data-member="1">
+                <div class="team-photo">
+                  <img src="img/team/melissa.jpg" alt="Melissa Peñaloza" loading="lazy">
+                  <span class="team-initials">MP</span>
+                </div>
+                <h3 class="team-name">Melissa Peñaloza</h3>
+              </article>
+              <article class="team-member" data-member="2">
+                <div class="team-photo">
+                  <img src="img/team/daniel.jpg" alt="Daniel Yanez" loading="lazy">
+                  <span class="team-initials">DY</span>
+                </div>
+                <h3 class="team-name">Daniel Yanez</h3>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
