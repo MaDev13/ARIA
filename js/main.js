@@ -122,10 +122,11 @@
   function updateNavVisibility() {
     const scrollY = lenis.scroll;
     const vh = window.innerHeight;
-    const pastApertura = scrollY > vh * 0.3;
+    const heroEl = document.getElementById('hero');
+    const pastHero = heroEl ? scrollY > heroEl.offsetHeight * 0.4 : scrollY > vh * 0.3;
     const onFinal = finalSection && scrollY >= finalSection.offsetTop - vh * 0.15;
 
-    progressNav.classList.toggle('progress-nav-hidden', !pastApertura || onFinal);
+    progressNav.classList.toggle('progress-nav-hidden', !pastHero || onFinal);
   }
 
   sections.forEach((section, i) => {
@@ -160,16 +161,153 @@
     });
   });
 
-  // ─── SECCIÓN 1: APERTURA ───
-  gsap.to('.opening-question', {
-    opacity: 1,
-    duration: 2.5,
-    delay: 1,
-    ease: 'power2.inOut',
-    onStart: startFactoryAmbience,
+  // ─── SECCIÓN 1: HERO ───
+  gsap.to('.hero-title', { opacity: 1, y: 0, duration: 1.2, delay: 0.4, ease: 'power2.out' });
+  gsap.from('.hero-title', { y: 24, duration: 0.01 });
+  gsap.to('.hero-subtitle', { opacity: 1, y: 0, duration: 1, delay: 0.9, ease: 'power2.out' });
+  gsap.from('.hero-subtitle', { y: 20, duration: 0.01 });
+  gsap.to('.hero-cta', { opacity: 1, y: 0, duration: 0.8, delay: 1.4, ease: 'power2.out' });
+  gsap.from('.hero-cta', { y: 16, duration: 0.01 });
+
+  document.getElementById('heroCta')?.addEventListener('click', () => {
+    const target = document.getElementById('sopa-letras');
+    if (target) lenis.scrollTo(target, { offset: 0, duration: 1.4 });
   });
 
-  // ─── SECCIÓN 2: CONTEXTO (1 imagen por scroll → alerta → luego sección 3) ───
+  // ─── SECCIÓN 2: SOPA DE LETRAS (revelación con scroll) ───
+  const SOPA_WORD = 'DECIDIR';
+  const SOPA_SIZE = 10;
+  const SOPA_STEPS = 3;
+  const sopaGrid = document.getElementById('sopaGrid');
+  const sopaSuccess = document.getElementById('sopaSuccess');
+  let sopaAnswerEls = [];
+
+  function buildSopaGrid() {
+    if (!sopaGrid) return;
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const grid = Array.from({ length: SOPA_SIZE }, () =>
+      Array.from({ length: SOPA_SIZE }, () => letters[Math.floor(Math.random() * letters.length)])
+    );
+    const row = 4;
+    const col = 1;
+    for (let i = 0; i < SOPA_WORD.length; i++) grid[row][col + i] = SOPA_WORD[i];
+
+    sopaGrid.innerHTML = '';
+    grid.forEach((r, ri) => {
+      r.forEach((letter, ci) => {
+        const cell = document.createElement('span');
+        cell.className = 'sopa-cell';
+        cell.textContent = letter;
+        cell.dataset.row = ri;
+        cell.dataset.col = ci;
+        if (ri === row && ci >= col && ci < col + SOPA_WORD.length) {
+          cell.dataset.answer = String(ci - col);
+        }
+        sopaGrid.appendChild(cell);
+      });
+    });
+
+    sopaAnswerEls = Array.from(sopaGrid.querySelectorAll('[data-answer]'))
+      .sort((a, b) => parseInt(a.dataset.answer, 10) - parseInt(b.dataset.answer, 10));
+  }
+
+  function resetSopaReveal() {
+    sopaAnswerEls.forEach((c) => c.classList.remove('found'));
+    gsap.set(sopaSuccess, { opacity: 0 });
+  }
+
+  buildSopaGrid();
+  resetSopaReveal();
+
+  gsap.to('.sopa-title', {
+    scrollTrigger: { trigger: '#sopa-letras', start: 'top 70%' },
+    opacity: 1, duration: 0.7,
+  });
+  gsap.to('.sopa-desc', {
+    scrollTrigger: { trigger: '#sopa-letras', start: 'top 65%' },
+    opacity: 1, duration: 0.7, delay: 0.08,
+  });
+  gsap.to('#sopaGridWrap', {
+    scrollTrigger: { trigger: '#sopa-letras', start: 'top 60%' },
+    opacity: 1, duration: 0.8, delay: 0.12, ease: 'power2.out',
+  });
+
+  function syncSopaReveal(progress) {
+    const wordVisible = progress >= 0.35;
+    const done = progress >= 0.72;
+
+    sopaAnswerEls.forEach((cell) => cell.classList.toggle('found', wordVisible));
+    gsap.set(sopaSuccess, { opacity: done ? 1 : 0 });
+  }
+
+  const sopaTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '#sopa-letras',
+      start: 'top top',
+      end: () => `+=${SOPA_STEPS * 100}%`,
+      pin: true,
+      pinSpacing: true,
+      scrub: true,
+      anticipatePin: 1,
+      onUpdate: (self) => syncSopaReveal(self.progress),
+      onLeaveBack: resetSopaReveal,
+      invalidateOnRefresh: true,
+    },
+  });
+
+  sopaTl.to({}, { duration: SOPA_STEPS });
+
+  const sopaST = sopaTl.scrollTrigger;
+
+  // ─── SECCIÓN 3: PREGUNTA DE IMPACTO ───
+  gsap.to('.impact-question', {
+    scrollTrigger: { trigger: '#pregunta-impacto', start: 'top 55%' },
+    opacity: 1,
+    duration: 2,
+    ease: 'power2.inOut',
+  });
+  gsap.to('.impact-scroll-hint', {
+    scrollTrigger: { trigger: '#pregunta-impacto', start: 'top 50%' },
+    opacity: 0.6,
+    duration: 1,
+    delay: 1.2,
+    ease: 'power2.out',
+  });
+
+  // ─── SECCIÓN 4: TESTIMONIO ───
+  const testimonioVideo = document.getElementById('testimonioVideo');
+  const testimonioPlay = document.getElementById('testimonioPlay');
+
+  testimonioPlay?.addEventListener('click', () => {
+    if (!testimonioVideo) return;
+    testimonioVideo.play().catch(() => {});
+    testimonioPlay.classList.add('hidden');
+  });
+
+  testimonioVideo?.addEventListener('ended', () => {
+    testimonioPlay?.classList.remove('hidden');
+  });
+
+  testimonioVideo?.addEventListener('pause', () => {
+    if (testimonioVideo.currentTime > 0 && !testimonioVideo.ended) {
+      testimonioPlay?.classList.remove('hidden');
+    }
+  });
+
+  gsap.to('.testimonio-title', {
+    scrollTrigger: { trigger: '#testimonio', start: 'top 65%' },
+    opacity: 1, duration: 0.8,
+  });
+  gsap.to('.testimonio-sub', {
+    scrollTrigger: { trigger: '#testimonio', start: 'top 62%' },
+    opacity: 1, duration: 0.8, delay: 0.1,
+  });
+  gsap.to('#testimonioWrap', {
+    scrollTrigger: { trigger: '#testimonio', start: 'top 55%' },
+    opacity: 1, duration: 0.9, delay: 0.2, ease: 'power3.out',
+  });
+
+  // ─── SECCIÓN 5: CONTEXTO / PROBLEMA (imágenes) ───
   const cards = ['#card-factory', '#card-materials', '#card-dispatch', '#card-workers'];
   const CONTEXTO_STEPS = 5;
 
@@ -215,11 +353,14 @@
   ScrollTrigger.create({
     trigger: '#contexto',
     start: 'top 80%',
-    onEnter: () => fadeFactoryAmbience(true),
-    onLeaveBack: () => fadeFactoryAmbience(false),
+    onEnter: () => {
+      startFactoryAmbience();
+      fadeFactoryAmbience(false);
+    },
+    onLeaveBack: () => fadeFactoryAmbience(true),
   });
 
-  // ─── SECCIÓN 3: PROBLEMA (1 paso por ítem, ciclo completo antes de sección 4) ───
+  // ─── SECCIÓN 6: FLUJO DEL PROBLEMA ───
   const flowItems = document.querySelectorAll('#problemFlow .flow-item');
   const flowArrows = document.querySelectorAll('#problemFlow .flow-arrow');
   const PROBLEMA_STEPS = flowItems.length;
@@ -943,7 +1084,28 @@
 
     e.preventDefault();
 
-    // Avanzar paso a paso dentro de sección 2
+    // Avanzar paso a paso dentro de sopa de letras
+    if (sopaST && sopaST.isActive) {
+      const step = getPinnedStep(sopaST, SOPA_STEPS);
+      if (down && step < SOPA_STEPS - 1) {
+        scrollToStep(sopaST, SOPA_STEPS, step + 1);
+        return;
+      }
+      if (up && step > 0) {
+        scrollToStep(sopaST, SOPA_STEPS, step - 1);
+        return;
+      }
+      if (down && step >= SOPA_STEPS - 1) {
+        lenis.scrollTo(document.getElementById('pregunta-impacto'), { duration: 1.1 });
+        return;
+      }
+      if (up && step === 0) {
+        lenis.scrollTo(sopaST.start - 1, { duration: 1.1 });
+        return;
+      }
+    }
+
+    // Avanzar paso a paso dentro de sección 5 (contexto)
     if (contextoST && contextoST.isActive) {
       const step = getPinnedStep(contextoST, CONTEXTO_STEPS);
       if (down && step < CONTEXTO_STEPS - 1) {
@@ -964,7 +1126,7 @@
       }
     }
 
-    // Avanzar paso a paso dentro de sección 3
+    // Avanzar paso a paso dentro de sección 6 (flujo)
     if (problemaST && problemaST.isActive) {
       const step = getPinnedStep(problemaST, PROBLEMA_STEPS);
       if (down && step < PROBLEMA_STEPS - 1) {

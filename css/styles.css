@@ -96,10 +96,213 @@ body {
   transform: translateY(-50%) translateX(0);
 }
 
-/* Opening question */
-.opening-question {
+/* Opening / impact */
+.impact-question {
   letter-spacing: -0.02em;
   color: rgba(255, 255, 255, 0.92);
+}
+
+.impact-scroll-hint {
+  margin-top: 2.5rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  opacity: 0.6;
+}
+
+/* Hero */
+.section-hero {
+  background: #000;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.75rem 1.5rem;
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--primary-light);
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero-cta:hover {
+  background: rgba(124, 58, 237, 0.18);
+  border-color: rgba(124, 58, 237, 0.55);
+  transform: translateY(-2px);
+}
+
+/* Sopa de letras */
+.section-sopa {
+  overflow: hidden;
+}
+
+.sopa-title {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.sopa-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.75rem;
+  line-height: 1.5;
+}
+
+.sopa-grid-wrap {
+  display: inline-block;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  margin-bottom: 1.25rem;
+}
+
+.sopa-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.sopa-cell {
+  width: clamp(26px, 6vw, 34px);
+  height: clamp(26px, 6vw, 34px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(0.65rem, 2vw, 0.8rem);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.sopa-cell.found {
+  background: rgba(124, 58, 237, 0.45);
+  border-color: var(--primary-light);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(124, 58, 237, 0.35);
+}
+
+.sopa-success {
+  font-size: 0.9rem;
+  color: var(--primary-light);
+  margin-top: 0.5rem;
+  opacity: 0;
+}
+
+.sopa-success strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Testimonio */
+.section-testimonio {
+  overflow: visible;
+}
+
+.testimonio-title {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 0.65rem;
+  letter-spacing: -0.02em;
+}
+
+.testimonio-sub {
+  font-size: clamp(0.9rem, 2vw, 1.05rem);
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+}
+
+.testimonio-video-wrap {
+  position: relative;
+  max-width: 720px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  background: #000;
+  box-shadow: 0 16px 48px rgba(124, 58, 237, 0.12);
+  aspect-ratio: 16 / 9;
+}
+
+.testimonio-video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonio-play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, opacity 0.3s ease;
+}
+
+.testimonio-play.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.testimonio-play-icon {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  color: #fff;
+  background: rgba(124, 58, 237, 0.85);
+  border-radius: 50%;
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.4);
+  padding-left: 4px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.testimonio-play:hover .testimonio-play-icon {
+  transform: scale(1.08);
+  background: var(--primary);
 }
 
 .ia-question {
@@ -2124,9 +2327,9 @@ body {
   .contexto-inner {
     padding: 4.5rem 1rem 2rem;
   }
-  .opening-question, .ia-question { font-size: 1.65rem !important; }
+  .impact-question, .ia-question { font-size: 1.65rem !important; }
 }
 
 @media (max-width: 480px) {
-  .opening-question, .ia-question { font-size: 1.45rem !important; }
+  .impact-question, .ia-question { font-size: 1.45rem !important; }
 }

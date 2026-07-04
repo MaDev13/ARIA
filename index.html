@@ -37,17 +37,59 @@
 
   <main>
 
-    <!-- SECCIÓN 1: PREGUNTA INICIAL -->
-    <section class="section section-pure" id="apertura" data-section="Apertura">
-      <div class="text-center px-6 relative z-10 max-w-5xl mx-auto">
-        <h1 class="opening-question text-3xl md:text-5xl lg:text-6xl font-light leading-snug opacity-0">
-          ¿Qué pasaría si una sola decisión pudiera detener toda una producción?
-        </h1>
+    <!-- SECCIÓN 1: HERO -->
+    <section class="section section-pure section-hero" id="hero" data-section="Inicio">
+      <div class="hero-inner text-center px-6 max-w-3xl mx-auto relative z-10">
+        <h1 class="hero-title opacity-0">La decisión correcta puede cambiarlo todo.</h1>
+        <p class="hero-subtitle opacity-0">Cada día tomamos decisiones. Algunas cambian una tarde. Otras pueden cambiar el rumbo de toda una empresa.</p>
+        <button type="button" class="hero-cta opacity-0" id="heroCta">Descubre por qué ↓</button>
       </div>
     </section>
 
-    <!-- SECCIÓN 2: CONTEXTO OPERATIVO -->
-    <section class="section section-contexto" id="contexto" data-section="Contexto">
+    <!-- SECCIÓN 2: SOPA DE LETRAS -->
+    <section class="section section-sopa" id="sopa-letras" data-section="Interacción">
+      <div class="sopa-inner mx-auto px-4 md:px-6 max-w-lg text-center">
+        <h2 class="sopa-title opacity-0">Antes de continuar...</h2>
+        <p class="sopa-desc opacity-0">Hay una sola palabra escondida en esta sopa de letras.</p>
+        <div class="sopa-grid-wrap opacity-0" id="sopaGridWrap">
+          <div class="sopa-grid" id="sopaGrid" role="presentation" aria-hidden="true"></div>
+        </div>
+        <p class="sopa-success opacity-0" id="sopaSuccess">¡Exacto! <strong>DECIDIR</strong> es el corazón de cada operación.</p>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: PREGUNTA DE IMPACTO -->
+    <section class="section section-pure" id="pregunta-impacto" data-section="Impacto">
+      <div class="text-center px-6 relative z-10 max-w-5xl mx-auto">
+        <h2 class="impact-question text-3xl md:text-5xl lg:text-6xl font-light leading-snug opacity-0">
+          ¿Qué pasaría si una sola decisión pudiera detener toda una producción?
+        </h2>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: TESTIMONIO -->
+    <section class="section section-testimonio" id="testimonio" data-section="Testimonio">
+      <div class="testimonio-inner mx-auto px-4 md:px-6 max-w-3xl text-center">
+        <h2 class="testimonio-title opacity-0">No es una situación hipotética.</h2>
+        <p class="testimonio-sub opacity-0">Es una realidad que viven muchas empresas manufactureras.</p>
+        <div class="testimonio-video-wrap opacity-0" id="testimonioWrap">
+          <video
+            id="testimonioVideo"
+            class="testimonio-video"
+            src="img/testimonio.mp4"
+            playsinline
+            preload="metadata"
+            aria-label="Testimonio"
+          ></video>
+          <button type="button" class="testimonio-play" id="testimonioPlay" aria-label="Reproducir video">
+            <span class="testimonio-play-icon">▶</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: EL PROBLEMA (contexto operativo) -->
+    <section class="section section-contexto" id="contexto" data-section="Problema">
       <div class="contexto-inner" id="contextoInner">
         <div class="scene-cards" id="sceneCards">
           <div class="scene-card" id="card-factory">
@@ -83,8 +125,8 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 3: PROBLEMA -->
-    <section class="section" id="problema" data-section="Problema">
+    <!-- SECCIÓN 6: FLUJO DEL PROBLEMA -->
+    <section class="section" id="problema" data-section="Causa">
       <div class="container mx-auto px-6">
         <div class="flex flex-col items-center gap-0 max-w-xs mx-auto" id="problemFlow">
           <div class="flow-item"><div class="pipeline-box">Excel</div></div>
@@ -348,7 +390,7 @@
           </div>
           <div class="text-center opacity-0 benefit-item">
             <div class="counter-value"><span class="counter-weeks" data-target="2">0</span></div>
-            <p class="text-secondary text-xs uppercase tracking-widest mt-6">Anticipación de compras</p>
+            <p class="text-secondary text-xs uppercase tracking-widest mt-6">Semanas de margen para actuar</p>
           </div>
         </div>
       </div>
@@ -512,10 +554,10 @@
         <div class="ethics-grid">
           <article class="viab-card viab-card-ethics" data-ethics="0">
             <div class="viab-card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
             </div>
-            <h3 class="viab-card-title">Calidad de datos</h3>
-            <p class="viab-card-desc">Procesos de limpieza y validación antes del entrenamiento del modelo.</p>
+            <h3 class="viab-card-title">Sobrecostos imprevistos</h3>
+            <p class="viab-card-desc">En el consumo de infraestructura cloud o APIs de IA generativa.</p>
           </article>
 
           <article class="viab-card viab-card-ethics" data-ethics="1">
@@ -554,10 +596,6 @@
       <div class="roadmap-inner mx-auto px-4 md:px-6 max-w-6xl">
         <p class="text-primary text-xs tracking-[0.3em] uppercase text-center mb-3 opacity-0 section-label">Roadmap</p>
         <h2 class="roadmap-headline text-center text-2xl md:text-3xl font-light text-white mb-4 opacity-0">De MVP a escala</h2>
-        <p class="roadmap-intro text-center text-secondary text-sm md:text-base max-w-3xl mx-auto mb-10 md:mb-14 opacity-0">
-          Hoy contamos con un MVP funcional. El siguiente paso es validarlo en una empresa manufacturera, integrarlo con sistemas ERP y evolucionarlo hacia una solución escalable para múltiples plantas.
-        </p>
-
         <div class="roadmap-flow" id="roadmapFlow">
           <article class="roadmap-step roadmap-step-current" data-roadmap="0">
             <span class="roadmap-step-tag">Hoy</span>
