@@ -805,26 +805,35 @@
     ease: 'power2.out',
   });
 
-  // ─── SECCIÓN 14: RIESGOS Y ÉTICA ───
+  // ─── SECCIÓN 14: RIESGOS ───
   gsap.to('#riesgos-etica .section-label', {
     scrollTrigger: { trigger: '#riesgos-etica', start: 'top 70%' },
     opacity: 1,
     duration: 0.8,
   });
 
-  document.querySelectorAll('.viab-card-ethics').forEach((card, i) => {
-    gsap.to(card, {
-      scrollTrigger: { trigger: '#riesgos-etica', start: 'top 58%' },
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      delay: 0.15 + i * 0.12,
-      ease: 'power3.out',
-    });
+  gsap.from('.risk-headline', { y: 20, opacity: 0, duration: 0.01 });
+  gsap.to('.risk-headline', {
+    scrollTrigger: { trigger: '#riesgos-etica', start: 'top 65%' },
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    delay: 0.08,
   });
 
-  gsap.from('.ethics-banner', { opacity: 0, scale: 0.88, y: 28, duration: 0.01 });
-  gsap.to('.ethics-banner', {
+  gsap.from('#riskMajorCard', { y: 32, opacity: 0, scale: 0.96, duration: 0.01 });
+  gsap.to('#riskMajorCard', {
+    scrollTrigger: { trigger: '#riesgos-etica', start: 'top 55%' },
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    duration: 0.85,
+    delay: 0.15,
+    ease: 'power3.out',
+  });
+
+  gsap.from('#riesgos-etica .ethics-banner', { opacity: 0, scale: 0.88, y: 28, duration: 0.01 });
+  gsap.to('#riesgos-etica .ethics-banner', {
     scrollTrigger: {
       trigger: '#riesgos-etica',
       start: 'top 38%',

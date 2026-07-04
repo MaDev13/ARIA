@@ -1295,8 +1295,7 @@ body {
   width: 100%;
 }
 
-.viab-tech-grid,
-.ethics-grid {
+.viab-tech-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
@@ -1411,12 +1410,82 @@ body {
   line-height: 1.35;
   color: #fff;
   padding: 1.75rem 1.25rem;
-  margin-top: 0.5rem;
+  margin-top: 2rem;
   border-radius: 16px;
   border: 1px solid rgba(124, 58, 237, 0.35);
   background: linear-gradient(135deg, rgba(124, 58, 237, 0.12) 0%, rgba(255, 255, 255, 0.02) 100%);
   box-shadow: 0 12px 40px rgba(124, 58, 237, 0.1);
   transform: scale(0.92);
+}
+
+/* Riesgos — mayor riesgo */
+.section-risks {
+  overflow: visible;
+}
+
+.risk-headline {
+  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.risk-card-major {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 2rem 1.75rem;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+  border: 1px solid rgba(124, 58, 237, 0.4);
+  border-radius: 20px;
+  box-shadow: 0 16px 48px rgba(124, 58, 237, 0.12);
+}
+
+.risk-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--warning);
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.risk-card-icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 1.15rem;
+  border-radius: 14px;
+  background: rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(124, 58, 237, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-light);
+}
+
+.risk-card-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.risk-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.75rem;
+}
+
+.risk-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  text-align: left;
 }
 
 @media (max-width: 900px) {
@@ -1431,8 +1500,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  .viab-tech-grid,
-  .ethics-grid {
+  .viab-tech-grid {
     grid-template-columns: 1fr;
   }
 }
