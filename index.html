@@ -88,46 +88,9 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 5: EL PROBLEMA (contexto operativo) -->
-    <section class="section section-contexto" id="contexto" data-section="Problema">
-      <div class="contexto-inner" id="contextoInner">
-        <div class="scene-cards" id="sceneCards">
-          <div class="scene-card" id="card-factory">
-            <div class="scene-img-wrap">
-              <img src="img/fábrica.webp" alt="Fábrica" class="scene-img" loading="eager">
-            </div>
-            <span class="scene-label">Fábrica</span>
-          </div>
-          <div class="scene-card" id="card-materials">
-            <div class="scene-img-wrap">
-              <img src="img/materiales.jpg" alt="Materiales" class="scene-img" loading="eager">
-            </div>
-            <span class="scene-label">Materiales</span>
-          </div>
-          <div class="scene-card" id="card-dispatch">
-            <div class="scene-img-wrap">
-              <img src="img/despachos.jpg" alt="Despachos" class="scene-img" loading="eager">
-            </div>
-            <span class="scene-label">Despachos</span>
-          </div>
-          <div class="scene-card" id="card-workers">
-            <div class="scene-img-wrap">
-              <img src="img/Operarios.jpg" alt="Operarios" class="scene-img" loading="eager">
-            </div>
-            <span class="scene-label">Operarios</span>
-          </div>
-        </div>
-        <div class="scene-overlay opacity-0" id="sceneOverlay"></div>
-        <div class="scene-alert opacity-0" id="sceneAlert">
-          <span class="alert-icon">⛔</span>
-          <span class="alert-text">Producción detenida</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN 6: FLUJO DEL PROBLEMA -->
-    <section class="section" id="problema" data-section="Causa">
-      <div class="container mx-auto px-6">
+    <!-- SECCIÓN 5: FLUJO DEL PROBLEMA -->
+    <section class="section section-problema" id="problema" data-section="Problema">
+      <div class="problema-inner" id="problemaInner">
         <div class="flex flex-col items-center gap-0 max-w-xs mx-auto" id="problemFlow">
           <div class="flow-item"><div class="pipeline-box">Excel</div></div>
           <div class="flow-arrow text-2xl py-2">↓</div>
@@ -142,6 +105,11 @@
           <div class="flow-item"><div class="pipeline-box border-error/30 text-error">Compras urgentes</div></div>
           <div class="flow-arrow text-2xl py-2">↓</div>
           <div class="flow-item"><div class="pipeline-box border-error/30 text-error font-bold">Sobrecostos</div></div>
+        </div>
+        <div class="scene-overlay opacity-0" id="problemaOverlay"></div>
+        <div class="scene-alert opacity-0" id="problemaAlert">
+          <span class="alert-icon">⛔</span>
+          <span class="alert-text">Producción detenida</span>
         </div>
       </div>
     </section>
@@ -553,12 +521,11 @@
         <h2 class="risk-headline opacity-0">Nuestro mayor riesgo</h2>
 
         <article class="risk-card-major opacity-0" id="riskMajorCard">
-          <span class="risk-badge">Mayor riesgo</span>
+          <span class="risk-badge">Mayor desafío</span>
           <div class="risk-card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
           <h3 class="risk-card-title">Adopción del usuario</h3>
-          <p class="risk-card-desc">La tecnología puede ser sólida, pero si el equipo no la usa, no genera valor. Por eso diseñamos una interfaz conversacional intuitiva y contemplamos capacitación para facilitar la adopción desde el inicio.</p>
         </article>
 
         <p class="ethics-banner opacity-0">La IA propone. El ser humano decide.</p>
@@ -577,61 +544,41 @@
 
     <!-- SECCIÓN 16: ROADMAP -->
     <section class="section section-roadmap" id="roadmap" data-section="Roadmap">
-      <div class="roadmap-inner mx-auto px-4 md:px-6 max-w-6xl">
-        <p class="text-primary text-xs tracking-[0.3em] uppercase text-center mb-3 opacity-0 section-label">Roadmap</p>
-        <h2 class="roadmap-headline text-center text-2xl md:text-3xl font-light text-white mb-4 opacity-0">De MVP a escala</h2>
-        <div class="roadmap-flow" id="roadmapFlow">
-          <article class="roadmap-step roadmap-step-current" data-roadmap="0">
-            <span class="roadmap-step-tag">Hoy</span>
-            <div class="roadmap-step-icon">
+      <div class="roadmap-inner mx-auto px-4 md:px-6 max-w-4xl text-center">
+        <p class="text-primary text-xs tracking-[0.3em] uppercase mb-3 opacity-0 section-label">Roadmap</p>
+        <h2 class="roadmap-headline opacity-0">De MVP a escala</h2>
+
+        <div class="roadmap-visual">
+          <article class="roadmap-card roadmap-card-now opacity-0" id="roadmapNow">
+            <span class="roadmap-tag">Hoy</span>
+            <div class="roadmap-card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
             </div>
-            <h3 class="roadmap-step-title">MVP funcional</h3>
-            <p class="roadmap-step-desc">Dashboard, agente IA y simulación ya operativos</p>
+            <h3 class="roadmap-card-title">MVP funcional</h3>
+            <div class="roadmap-chips">
+              <span class="roadmap-chip">Dashboard</span>
+              <span class="roadmap-chip">Agente IA</span>
+              <span class="roadmap-chip">Simulación</span>
+            </div>
+            <span class="roadmap-status">Operativo</span>
           </article>
 
-          <div class="roadmap-connector" aria-hidden="true">
-            <span class="roadmap-connector-line"></span>
-            <span class="roadmap-connector-arrow">→</span>
-          </div>
+          <div class="roadmap-arrow opacity-0" id="roadmapArrow" aria-hidden="true">→</div>
 
-          <article class="roadmap-step" data-roadmap="1">
-            <span class="roadmap-step-tag">Piloto</span>
-            <div class="roadmap-step-icon">
+          <article class="roadmap-card roadmap-card-next opacity-0" id="roadmapNext">
+            <span class="roadmap-tag">Próximo paso</span>
+            <div class="roadmap-card-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </div>
-            <h3 class="roadmap-step-title">Validación en planta</h3>
-            <p class="roadmap-step-desc">Prueba real en una empresa manufacturera</p>
-          </article>
-
-          <div class="roadmap-connector" aria-hidden="true">
-            <span class="roadmap-connector-line"></span>
-            <span class="roadmap-connector-arrow">→</span>
-          </div>
-
-          <article class="roadmap-step" data-roadmap="2">
-            <span class="roadmap-step-tag">Integración</span>
-            <div class="roadmap-step-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 8h4M7 12h10"/></svg>
-            </div>
-            <h3 class="roadmap-step-title">Conexión ERP</h3>
-            <p class="roadmap-step-desc">Integración con SAP, Oracle u otros sistemas</p>
-          </article>
-
-          <div class="roadmap-connector" aria-hidden="true">
-            <span class="roadmap-connector-line"></span>
-            <span class="roadmap-connector-arrow">→</span>
-          </div>
-
-          <article class="roadmap-step" data-roadmap="3">
-            <span class="roadmap-step-tag">Escala</span>
-            <div class="roadmap-step-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </div>
-            <h3 class="roadmap-step-title">Múltiples plantas</h3>
-            <p class="roadmap-step-desc">Solución escalable para operaciones regionales</p>
+            <h3 class="roadmap-card-title">Validación en planta</h3>
+            <p class="roadmap-card-meta">Empresa manufacturera</p>
           </article>
         </div>
+
+        <p class="roadmap-vision opacity-0" id="roadmapVision">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Plataforma escalable
+        </p>
       </div>
     </section>
 

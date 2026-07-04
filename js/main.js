@@ -307,67 +307,17 @@
     opacity: 1, duration: 0.9, delay: 0.2, ease: 'power3.out',
   });
 
-  // ─── SECCIÓN 5: CONTEXTO / PROBLEMA (imágenes) ───
-  const cards = ['#card-factory', '#card-materials', '#card-dispatch', '#card-workers'];
-  const CONTEXTO_STEPS = 5;
-
-  function resetContexto() {
-    gsap.set(cards.join(','), { opacity: 0, scale: 0.92, y: 28, filter: 'none' });
-    gsap.set('#sceneOverlay', { opacity: 0 });
-    gsap.set('#sceneAlert', { opacity: 0, scale: 0.85 });
-  }
-
-  resetContexto();
-
-  const contextoTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '#contexto',
-      start: 'top top',
-      end: () => `+=${CONTEXTO_STEPS * 100}%`,
-      pin: true,
-      pinSpacing: true,
-      scrub: true,
-      anticipatePin: 1,
-      onLeaveBack: resetContexto,
-      invalidateOnRefresh: true,
-    },
-  });
-
-  cards.forEach((card, i) => {
-    contextoTl.addLabel(`step${i}`, i);
-    contextoTl.fromTo(card,
-      { opacity: 0, scale: 0.92, y: 28 },
-      { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: 'power2.out', immediateRender: false },
-      i + 0.02
-    );
-  });
-
-  contextoTl.addLabel('step4', 4);
-  contextoTl.to('#sceneOverlay', { opacity: 1, duration: 0.35 }, 4.02);
-  contextoTl.to(cards.join(','), { filter: 'grayscale(1) brightness(0.3)', duration: 0.35 }, 4.02);
-  contextoTl.to('#sceneAlert', { opacity: 1, scale: 1, duration: 0.35, ease: 'back.out(1.4)' }, 4.08);
-  contextoTl.to({}, { duration: 0.92 }, 4.08);
-
-  const contextoST = contextoTl.scrollTrigger;
-
-  ScrollTrigger.create({
-    trigger: '#contexto',
-    start: 'top 80%',
-    onEnter: () => {
-      startFactoryAmbience();
-      fadeFactoryAmbience(false);
-    },
-    onLeaveBack: () => fadeFactoryAmbience(true),
-  });
-
-  // ─── SECCIÓN 6: FLUJO DEL PROBLEMA ───
+  // ─── SECCIÓN 5: FLUJO DEL PROBLEMA ───
   const flowItems = document.querySelectorAll('#problemFlow .flow-item');
   const flowArrows = document.querySelectorAll('#problemFlow .flow-arrow');
-  const PROBLEMA_STEPS = flowItems.length;
+  const PROBLEMA_STEPS = flowItems.length + 1;
 
   function resetProblema() {
     gsap.set(flowItems, { opacity: 0, y: 28 });
     gsap.set(flowArrows, { opacity: 0 });
+    gsap.set('#problemFlow', { filter: 'none' });
+    gsap.set('#problemaOverlay', { opacity: 0 });
+    gsap.set('#problemaAlert', { opacity: 0, scale: 0.85 });
   }
 
   resetProblema();
@@ -398,9 +348,24 @@
     }
   });
 
-  problemTl.to({}, { duration: 0.88 }, PROBLEMA_STEPS - 1 + 0.15);
+  const alertStep = flowItems.length;
+  problemTl.addLabel(`pstep${alertStep}`, alertStep);
+  problemTl.to('#problemaOverlay', { opacity: 1, duration: 0.35 }, alertStep + 0.02);
+  problemTl.to('#problemFlow', { filter: 'grayscale(1) brightness(0.35)', duration: 0.35 }, alertStep + 0.02);
+  problemTl.to('#problemaAlert', { opacity: 1, scale: 1, duration: 0.35, ease: 'back.out(1.4)' }, alertStep + 0.08);
+  problemTl.to({}, { duration: 0.88 }, alertStep + 0.08);
 
   const problemaST = problemTl.scrollTrigger;
+
+  ScrollTrigger.create({
+    trigger: '#problema',
+    start: 'top 80%',
+    onEnter: () => {
+      startFactoryAmbience();
+      fadeFactoryAmbience(false);
+    },
+    onLeaveBack: () => fadeFactoryAmbience(true),
+  });
 
   // ─── SECCIÓN 4: PREGUNTA IA ───
   gsap.to('.ia-question', {
@@ -882,40 +847,55 @@
     duration: 0.8,
   });
 
+  gsap.from('.roadmap-headline', { y: 20, opacity: 0, duration: 0.01 });
   gsap.to('.roadmap-headline', {
     scrollTrigger: { trigger: '#roadmap', start: 'top 65%' },
     opacity: 1,
+    y: 0,
     duration: 0.8,
     delay: 0.08,
   });
 
-  gsap.to('.roadmap-intro', {
-    scrollTrigger: { trigger: '#roadmap', start: 'top 60%' },
+  gsap.from('#roadmapNow', { y: 28, opacity: 0, scale: 0.96, duration: 0.01 });
+  gsap.to('#roadmapNow', {
+    scrollTrigger: { trigger: '#roadmap', start: 'top 58%' },
     opacity: 1,
-    duration: 0.9,
+    y: 0,
+    scale: 1,
+    duration: 0.75,
     delay: 0.15,
+    ease: 'power3.out',
+  });
+
+  gsap.from('#roadmapArrow', { opacity: 0, scale: 0.8, duration: 0.01 });
+  gsap.to('#roadmapArrow', {
+    scrollTrigger: { trigger: '#roadmap', start: 'top 55%' },
+    opacity: 1,
+    scale: 1,
+    duration: 0.5,
+    delay: 0.35,
     ease: 'power2.out',
   });
 
-  document.querySelectorAll('.roadmap-step').forEach((step, i) => {
-    gsap.to(step, {
-      scrollTrigger: { trigger: '#roadmap', start: 'top 52%' },
-      opacity: 1,
-      y: 0,
-      duration: 0.55,
-      delay: 0.3 + i * 0.15,
-      ease: 'power3.out',
-    });
+  gsap.from('#roadmapNext', { y: 28, opacity: 0, scale: 0.96, duration: 0.01 });
+  gsap.to('#roadmapNext', {
+    scrollTrigger: { trigger: '#roadmap', start: 'top 52%' },
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    duration: 0.75,
+    delay: 0.45,
+    ease: 'power3.out',
   });
 
-  document.querySelectorAll('.roadmap-connector').forEach((conn, i) => {
-    gsap.to(conn, {
-      scrollTrigger: { trigger: '#roadmap', start: 'top 50%' },
-      opacity: 1,
-      duration: 0.35,
-      delay: 0.45 + i * 0.15,
-      ease: 'power2.out',
-    });
+  gsap.from('#roadmapVision', { y: 16, opacity: 0, duration: 0.01 });
+  gsap.to('#roadmapVision', {
+    scrollTrigger: { trigger: '#roadmap', start: 'top 48%' },
+    opacity: 1,
+    y: 0,
+    duration: 0.7,
+    delay: 0.6,
+    ease: 'power2.out',
   });
 
   // ─── Fotos equipo (fallback iniciales) ───
@@ -1114,28 +1094,7 @@
       }
     }
 
-    // Avanzar paso a paso dentro de sección 5 (contexto)
-    if (contextoST && contextoST.isActive) {
-      const step = getPinnedStep(contextoST, CONTEXTO_STEPS);
-      if (down && step < CONTEXTO_STEPS - 1) {
-        scrollToStep(contextoST, CONTEXTO_STEPS, step + 1);
-        return;
-      }
-      if (up && step > 0) {
-        scrollToStep(contextoST, CONTEXTO_STEPS, step - 1);
-        return;
-      }
-      if (down && step >= CONTEXTO_STEPS - 1) {
-        lenis.scrollTo(problemaST.start, { duration: 1.1 });
-        return;
-      }
-      if (up && step === 0) {
-        lenis.scrollTo(contextoST.start - 1, { duration: 1.1 });
-        return;
-      }
-    }
-
-    // Avanzar paso a paso dentro de sección 6 (flujo)
+    // Avanzar paso a paso dentro de sección 5 (flujo del problema)
     if (problemaST && problemaST.isActive) {
       const step = getPinnedStep(problemaST, PROBLEMA_STEPS);
       if (down && step < PROBLEMA_STEPS - 1) {
